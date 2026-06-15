@@ -1,0 +1,161 @@
+{
+  "name": "cortex-plugin-memory-consolidation",
+  "version": "1.0.0",
+  "description": "Summarizes and merges episodic memories into semantic clusters",
+  "kind": "esm",
+  "entryPoint": "mod.ts",
+  "runtime": "deno",
+  "author": "CortexPrism",
+  "license": "MIT",
+  "repository": "https://github.com/CortexPrism/cortex-plugin-memory-consolidation",
+  "homepage": "",
+  "capabilities": [
+    "tools",
+    "memory:store"
+  ],
+  "tools": [
+    {
+      "name": "memory_consolidate",
+      "description": "Run consolidation on recent memories",
+      "params": [
+        {
+          "name": "since",
+          "type": "string",
+          "description": "ISO date string for how far back to consolidate",
+          "required": false,
+          "defaultValue": "24 hours ago"
+        },
+        {
+          "name": "max_memories",
+          "type": "number",
+          "description": "Maximum number of memories to process",
+          "required": false,
+          "defaultValue": 100
+        },
+        {
+          "name": "strategy",
+          "type": "string",
+          "description": "Consolidation strategy",
+          "required": false,
+          "defaultValue": "summarize",
+          "options": ["summarize", "cluster", "prune", "digest"]
+        }
+      ]
+    },
+    {
+      "name": "memory_prune",
+      "description": "Prune low-importance memories",
+      "params": [
+        {
+          "name": "threshold",
+          "type": "number",
+          "description": "Importance threshold below which memories are pruned",
+          "required": false,
+          "defaultValue": 0.3
+        },
+        {
+          "name": "older_than_days",
+          "type": "number",
+          "description": "Only prune memories older than this many days",
+          "required": false,
+          "defaultValue": 30
+        }
+      ]
+    },
+    {
+      "name": "memory_cluster",
+      "description": "Cluster related memories by topic",
+      "params": [
+        {
+          "name": "max_clusters",
+          "type": "number",
+          "description": "Maximum number of clusters to create",
+          "required": false,
+          "defaultValue": 10
+        }
+      ]
+    },
+    {
+      "name": "memory_digest",
+      "description": "Generate a digest of what was learned",
+      "params": [
+        {
+          "name": "period",
+          "type": "string",
+          "description": "Time period for the digest",
+          "required": false,
+          "defaultValue": "weekly",
+          "options": ["daily", "weekly", "monthly"]
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "description": "Output format for the digest",
+          "required": false,
+          "defaultValue": "summary",
+          "options": ["summary", "bullets", "detailed"]
+        }
+      ]
+    },
+    {
+      "name": "memory_search_semantic",
+      "description": "Search memories by semantic meaning",
+      "params": [
+        {
+          "name": "query",
+          "type": "string",
+          "description": "Semantic search query",
+          "required": true
+        },
+        {
+          "name": "max_results",
+          "type": "number",
+          "description": "Maximum number of results",
+          "required": false,
+          "defaultValue": 10
+        }
+      ]
+    }
+  ],
+  "ui": {
+    "section": "General",
+    "fields": [
+      {
+        "key": "autoConsolidate",
+        "label": "Auto Consolidate",
+        "type": "boolean",
+        "description": "Automatically consolidate memories",
+        "defaultValue": false
+      },
+      {
+        "key": "consolidationSchedule",
+        "label": "Schedule (daily/weekly)",
+        "type": "text",
+        "description": "How often to run consolidation",
+        "defaultValue": "daily"
+      },
+      {
+        "key": "pruneThreshold",
+        "label": "Prune Threshold",
+        "type": "number",
+        "description": "Importance threshold for pruning",
+        "defaultValue": 0.3
+      },
+      {
+        "key": "maxClusters",
+        "label": "Max Clusters",
+        "type": "number",
+        "description": "Maximum number of memory clusters",
+        "defaultValue": 10
+      }
+    ]
+  },
+  "dependencies": {},
+  "peerDependencies": {
+    "cortex": ">=1.0.0"
+  },
+  "aiDisclosure": {
+    "tools": ["Claude Code (Anthropic)"],
+    "humanReview": true
+  }
+}
