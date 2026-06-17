@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-memory-consolidation",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Summarizes and merges episodic memories into semantic clusters",
   "kind": "esm",
   "entryPoint": "mod.ts",

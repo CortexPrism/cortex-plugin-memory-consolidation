@@ -1,4 +1,4 @@
-import type { Tool, ToolContext, PluginContext, ToolCallResult } from 'cortex/plugins';
+import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.ts';
 
 let pluginConfig: Record<string, unknown> = {};
 
@@ -16,9 +16,24 @@ const memoryConsolidateTool: Tool = {
     name: 'memory_consolidate',
     description: 'Run consolidation on recent memories',
     params: [
-      { name: 'since', type: 'string', description: 'ISO date string for how far back to consolidate', required: false },
-      { name: 'max_memories', type: 'number', description: 'Maximum number of memories to process', required: false },
-      { name: 'strategy', type: 'string', description: 'Consolidation strategy (summarize, cluster, prune, digest)', required: false },
+      {
+        name: 'since',
+        type: 'string',
+        description: 'ISO date string for how far back to consolidate',
+        required: false,
+      },
+      {
+        name: 'max_memories',
+        type: 'number',
+        description: 'Maximum number of memories to process',
+        required: false,
+      },
+      {
+        name: 'strategy',
+        type: 'string',
+        description: 'Consolidation strategy (summarize, cluster, prune, digest)',
+        required: false,
+      },
     ],
     capabilities: ['memory:store'],
   },
@@ -68,8 +83,18 @@ const memoryPruneTool: Tool = {
     name: 'memory_prune',
     description: 'Prune low-importance memories',
     params: [
-      { name: 'threshold', type: 'number', description: 'Importance threshold below which memories are pruned', required: false },
-      { name: 'older_than_days', type: 'number', description: 'Only prune memories older than this many days', required: false },
+      {
+        name: 'threshold',
+        type: 'number',
+        description: 'Importance threshold below which memories are pruned',
+        required: false,
+      },
+      {
+        name: 'older_than_days',
+        type: 'number',
+        description: 'Only prune memories older than this many days',
+        required: false,
+      },
     ],
     capabilities: ['memory:store'],
   },
@@ -102,7 +127,12 @@ const memoryClusterTool: Tool = {
     name: 'memory_cluster',
     description: 'Cluster related memories by topic',
     params: [
-      { name: 'max_clusters', type: 'number', description: 'Maximum number of clusters to create', required: false },
+      {
+        name: 'max_clusters',
+        type: 'number',
+        description: 'Maximum number of clusters to create',
+        required: false,
+      },
     ],
     capabilities: ['memory:store'],
   },
@@ -134,8 +164,18 @@ const memoryDigestTool: Tool = {
     name: 'memory_digest',
     description: 'Generate a digest of what was learned',
     params: [
-      { name: 'period', type: 'string', description: 'Time period for the digest (daily, weekly, monthly)', required: false },
-      { name: 'format', type: 'string', description: 'Output format (summary, bullets, detailed)', required: false },
+      {
+        name: 'period',
+        type: 'string',
+        description: 'Time period for the digest (daily, weekly, monthly)',
+        required: false,
+      },
+      {
+        name: 'format',
+        type: 'string',
+        description: 'Output format (summary, bullets, detailed)',
+        required: false,
+      },
     ],
     capabilities: ['memory:store'],
   },
@@ -176,7 +216,9 @@ const memoryDigestTool: Tool = {
         toolName: 'memory_digest',
         success: false,
         output: '',
-        error: `Failed to generate digest: ${error instanceof Error ? error.message : String(error)}`,
+        error: `Failed to generate digest: ${
+          error instanceof Error ? error.message : String(error)
+        }`,
         durationMs: Date.now() - start,
       };
     }
@@ -189,7 +231,12 @@ const memorySearchSemanticTool: Tool = {
     description: 'Search memories by semantic meaning',
     params: [
       { name: 'query', type: 'string', description: 'Semantic search query', required: true },
-      { name: 'max_results', type: 'number', description: 'Maximum number of results', required: false },
+      {
+        name: 'max_results',
+        type: 'number',
+        description: 'Maximum number of results',
+        required: false,
+      },
     ],
     capabilities: ['memory:store'],
   },

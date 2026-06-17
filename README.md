@@ -17,6 +17,7 @@ cortex plugin install ./manifest.json
 Run consolidation on recent memories.
 
 **Parameters:**
+
 - `since` (string, optional, default "24 hours ago") — ISO date string
 - `max_memories` (number, optional, default 100) — Max memories to process
 - `strategy` (string, optional, default "summarize") — consolidate, cluster, prune, digest
@@ -26,6 +27,7 @@ Run consolidation on recent memories.
 Prune low-importance memories.
 
 **Parameters:**
+
 - `threshold` (number, optional, default 0.3) — Importance threshold
 - `older_than_days` (number, optional, default 30) — Age cutoff in days
 
@@ -34,6 +36,7 @@ Prune low-importance memories.
 Cluster related memories by topic.
 
 **Parameters:**
+
 - `max_clusters` (number, optional, default 10) — Max clusters
 
 ### memory_digest
@@ -41,6 +44,7 @@ Cluster related memories by topic.
 Generate a digest of what was learned.
 
 **Parameters:**
+
 - `period` (string, optional, default "weekly") — daily, weekly, monthly
 - `format` (string, optional, default "summary") — summary, bullets, detailed
 
@@ -49,6 +53,7 @@ Generate a digest of what was learned.
 Search memories by semantic meaning.
 
 **Parameters:**
+
 - `query` (string, required) — Semantic search query
 - `max_results` (number, optional, default 10) — Max results
 
