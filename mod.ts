@@ -4,11 +4,11 @@ let pluginConfig: Record<string, unknown> = {};
 
 export async function onLoad(ctx: PluginContext): Promise<void> {
   pluginConfig = await ctx.config.get();
-  console.log(`[cortex-plugin-memory-consolidation] Loaded in ${ctx.pluginDir}`);
+  ctx.logger.info(`[cortex-plugin-memory-consolidation] Loaded in ${ctx.pluginDir}`);
 }
 
-export async function onUnload(_ctx: PluginContext): Promise<void> {
-  console.log('[cortex-plugin-memory-consolidation] Unloading...');
+export async function onUnload(ctx: PluginContext): Promise<void> {
+  ctx.logger.info('[cortex-plugin-memory-consolidation] Unloading...');
 }
 
 const memoryConsolidateTool: Tool = {
