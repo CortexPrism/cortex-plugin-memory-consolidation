@@ -1,5 +1,5 @@
 // deno-lint-ignore-file
-import type { PluginContext, Tool, ToolCallResult, ToolContext } from './types.ts';
+import type { PluginContext, Tool, ToolCallResult } from 'cortex/plugins';
 
 let pluginConfig: Record<string, unknown> = {};
 
@@ -38,7 +38,7 @@ const memoryConsolidateTool: Tool = {
     ],
     capabilities: ['memory:store'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const since = (args.since as string) || '24 hours ago';
@@ -99,7 +99,7 @@ const memoryPruneTool: Tool = {
     ],
     capabilities: ['memory:store'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const threshold = (args.threshold as number) || 0.3;
@@ -137,7 +137,7 @@ const memoryClusterTool: Tool = {
     ],
     capabilities: ['memory:store'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const maxClusters = (args.max_clusters as number) || 10;
@@ -180,7 +180,7 @@ const memoryDigestTool: Tool = {
     ],
     capabilities: ['memory:store'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const period = (args.period as string) || 'weekly';
@@ -241,7 +241,7 @@ const memorySearchSemanticTool: Tool = {
     ],
     capabilities: ['memory:store'],
   },
-  execute: async (args: Record<string, unknown>, _ctx: ToolContext): Promise<ToolCallResult> => {
+  execute: async (args: Record<string, unknown>, _ctx: PluginContext): Promise<ToolCallResult> => {
     const start = Date.now();
     try {
       const query = args.query;

@@ -1,6 +1,6 @@
 {
   "name": "cortex-plugin-memory-consolidation",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Summarizes and merges episodic memories into semantic clusters",
   "kind": "esm",
   "entryPoint": "mod.ts",
@@ -23,21 +23,21 @@
           "type": "string",
           "description": "ISO date string for how far back to consolidate",
           "required": false,
-          "default": "24 hours ago"
+          "defaultValue": "24 hours ago"
         },
         {
           "name": "max_memories",
           "type": "number",
           "description": "Maximum number of memories to process",
           "required": false,
-          "default": 100
+          "defaultValue": 100
         },
         {
           "name": "strategy",
           "type": "string",
           "description": "Consolidation strategy",
           "required": false,
-          "default": "summarize",
+          "defaultValue": "summarize",
           "enum": [
             "summarize",
             "cluster",
@@ -56,14 +56,14 @@
           "type": "number",
           "description": "Importance threshold below which memories are pruned",
           "required": false,
-          "default": 0.3
+          "defaultValue": 0.3
         },
         {
           "name": "older_than_days",
           "type": "number",
           "description": "Only prune memories older than this many days",
           "required": false,
-          "default": 30
+          "defaultValue": 30
         }
       ]
     },
@@ -76,7 +76,7 @@
           "type": "number",
           "description": "Maximum number of clusters to create",
           "required": false,
-          "default": 10
+          "defaultValue": 10
         }
       ]
     },
@@ -89,7 +89,7 @@
           "type": "string",
           "description": "Time period for the digest",
           "required": false,
-          "default": "weekly",
+          "defaultValue": "weekly",
           "enum": [
             "daily",
             "weekly",
@@ -101,7 +101,7 @@
           "type": "string",
           "description": "Output format for the digest",
           "required": false,
-          "default": "summary",
+          "defaultValue": "summary",
           "enum": [
             "summary",
             "bullets",
@@ -125,7 +125,7 @@
           "type": "number",
           "description": "Maximum number of results",
           "required": false,
-          "default": 10
+          "defaultValue": 10
         }
       ]
     }
@@ -140,28 +140,28 @@
             "label": "Auto Consolidate",
             "type": "boolean",
             "description": "Automatically consolidate memories",
-            "default": false
+            "defaultValue": false
           },
           {
             "key": "consolidationSchedule",
             "label": "Schedule (daily/weekly)",
             "type": "text",
             "description": "How often to run consolidation",
-            "default": "daily"
+            "defaultValue": "daily"
           },
           {
             "key": "pruneThreshold",
             "label": "Prune Threshold",
             "type": "number",
             "description": "Importance threshold for pruning",
-            "default": 0.3
+            "defaultValue": 0.3
           },
           {
             "key": "maxClusters",
             "label": "Max Clusters",
             "type": "number",
             "description": "Maximum number of memory clusters",
-            "default": 10
+            "defaultValue": 10
           }
         ]
       }
@@ -169,7 +169,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "cortex": ">=1.0.0"
+    "cortex": ">=0.51.0"
   },
   "aiDisclosure": {
     "tools": [
